@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>単語ジェネレーター</title>
+
+    <style>
+        /* ページの背景と文字の基本設定 */
+        body {
+            font-family: sans-serif; /* 読みやすいフォントに */
+            background-color: #f4f4f4; /* 薄いグレーの背景 */
+            color: #333; /* 基本の文字色を濃いグレーに */
+            display: flex; /* 中央揃えのため */
+            justify-content: center; /* 中央揃え（左右） */
+            align-items: center; /* 中央揃え（上下） */
+            min-height: 90vh; /* 画面の高さいっぱいに */
+        }
+
+        /* 全体を囲むカード */
+        .container {
+            background-color: #ffffff; /* 白い背景 */
+            padding: 30px;
+            border-radius: 10px; /* 角を丸くする */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 影をつける */
+            text-align: center; /* 中身を中央揃えに */
+            width: 80%;
+            max-width: 700px; /* 最大幅を指定 */
+        }
+
+        /* ボタンのデザイン */
+        #drawButton {
+            background-color: #007bff; /* 青色 */
+            color: white; /* 文字を白に */
+            border: none; /* 枠線を消す */
+            padding: 12px 24px; /* ボタンの余白（上下、左右） */
+            font-size: 16px;
+            border-radius: 5px; /* 角を少し丸く */
+            cursor: pointer; /* マウスカーソルを指マークに */
+            transition: background-color 0.2s; /* 色が変わるアニメーション */
+        }
+
+        /* ボタンにマウスを乗せた時のデザイン */
+        #drawButton:hover {
+            background-color: #0056b3; /* 少し濃い青に */
+        }
+
+        /* 結果表示エリアのデザイン */
+        #resultArea {
+            color: #007bff; /* ボタンと同じ青色に */
+            font-size: 24px;
+            font-weight: bold; /* 太字に */
+            min-height: 50px; /* 結果が表示されてもガタつかないように高さを確保 */
+            margin-top: 20px;
+        }
+    </style>
+    </head>
+<body>
+
+    <div class="container">
+
+        <h1>ランダム単語ジェネレーター</h1>
+
+        <p>ボタンを押して、学習中の単語（例：ドイツ語）をランダムに表示します。</p>
+
+        <button id="drawButton">単語を引く</button>
+
+        <h2 id="resultArea">ここに結果が表示されます</h2>
+
+    </div> <script>
+        // 1. まず、HTMLの部品をJavaScriptで使えるように名前をつけます
+        const button = document.getElementById("drawButton");
+        const result = document.getElementById("resultArea");
+
+        // 2. 単語リストを作ります (ひとまずドイツ語の例)
+        const words = ["der Baum (木)", "die Katze (猫)", "das Haus (家)", "der Hund (犬)", "lernen (学ぶ)"];
+
+        // 3. ボタンがクリックされた時の「処理」を登録します
+        button.addEventListener("click", () => {
+            // 4. 単語リストからランダムに1つ選びます
+            const randomIndex = Math.floor(Math.random() * words.length);
+            const randomWord = words[randomIndex];
+
+            // 5. 選んだ単語を、結果表示エリアの文字として設定します
+            result.textContent = randomWord;
+        });
+    </script>
+
+</body>
+</html>
